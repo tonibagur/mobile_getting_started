@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             holder.imgIcon = (ImageView) row.findViewById(R.id.icon);
             holder.name = (TextView) row.findViewById(R.id.name);
             holder.status = (TextView) row.findViewById(R.id.status);
+            holder.delete=(Button)row.findViewById(R.id.deleteButton);
 
             row.setTag(holder);
         } else {
@@ -61,6 +64,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.status.setText(contact.getStatus());
         holder.imgIcon.setImageResource(contact.getIcon());
 
+        final View finalRow = row;
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+/*                TabFragment2.getLv().removeView(finalRow);*/
+            }
+        });
+
         return row;
     }
 
@@ -68,6 +79,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         ImageView imgIcon;
         TextView name;
         TextView status;
+        Button delete;
 
     }
 }

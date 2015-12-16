@@ -38,4 +38,17 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return mNumOfTabs;
     }
+
+    public int getTitle(int position) {
+        switch (position) {
+            case 0:
+                return R.id.dashboard;
+            case 1:
+                return R.id.chats;
+            case 2:
+                return R.id.account;
+            default:
+                return -1;
+        }
+    }
 }
