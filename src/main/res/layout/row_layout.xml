@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:foreground="@drawable/circle"
+            android:foreground="@drawable/avatar_frame_circle"
             android:foregroundGravity="center">
 
             <ImageView

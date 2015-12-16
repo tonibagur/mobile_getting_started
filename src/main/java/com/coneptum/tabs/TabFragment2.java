@@ -21,28 +21,40 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.zip.Inflater;
 
 
 public class TabFragment2 extends Fragment {
 
     private static ListView lv;
+    ArrayList<Contact> contacts = new ArrayList<Contact>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
         lv = (ListView) view.findViewById(R.id.list);
 
-        final Contact contacts_data[] = new Contact[]
+       /* Contact contacts_data[] = new Contact[]
                 {
                         new Contact(R.drawable.android, "Ben Sparrow", "You on your way?"),
                         new Contact(R.drawable.android, "Max Lynx", "Hey, it's me"),
                         new Contact(R.drawable.android, "Adam Bradleyson", "I should buy a boat"),
                         new Contact(R.drawable.android, "Perry Governor", "Look at my muklukus!"),
-                        new Contact(R.drawable.square, "Mike Harrington", "This is wicked good ice cream.")
+                        new Contact(R.drawable.avatar_square, "Mike Harrington", "This is wicked good ice cream.")
                 };
 
-        ContactAdapter adapter = new ContactAdapter(getActivity(), R.layout.row_layout, contacts_data);
+        final ArrayList<Contact> contacts=(ArrayList)Arrays.asList(contacts_data);
+*/
+        contacts.add(new Contact(R.drawable.android, "Ben Sparrow", "You on your way?"));
+        contacts.add(new Contact(R.drawable.android, "Max Lynx", "Hey, it's me"));
+        contacts.add(new Contact(R.drawable.android, "Adam Bradleyson", "I should buy a boat"));
+        contacts.add(new Contact(R.drawable.android, "Perry Governor", "Look at my muklukus!"));
+        contacts.add(new Contact(R.drawable.avatar_square, "Mike Harrington", "This is wicked good ice cream."));
+
+        ContactAdapter adapter = new ContactAdapter(getActivity(), R.layout.row_layout, contacts);
 
         lv.setAdapter(adapter);
 
@@ -55,7 +67,7 @@ public class TabFragment2 extends Fragment {
                 //hauria de funcionar amb:
     /*            trans.replace(R.id.pager, new DetailContact(contacts_data[position]));*/
                 //pero de moment només funciona sense ajustarse a la tab amb:
-                trans.replace(android.R.id.content, new DetailContact(contacts_data[position]));
+                trans.replace(android.R.id.content, new DetailContact(contacts.get(position)));
                 trans.addToBackStack(null);
                 trans.commit();
 

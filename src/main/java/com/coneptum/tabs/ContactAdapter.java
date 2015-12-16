@@ -7,37 +7,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by coneptum on 11/12/15.
  */
-public class ContactAdapter extends ArrayAdapter<Contact> {
+public class ContactAdapter extends BaseAdapter {
 
     Context context;
     int layoutResourceId;
-    Contact data[] = null;
-    /*Contact contact=null;*/
+    ArrayList<Contact> data;
 
-    public ContactAdapter(Context context, int layoutResourceId, Contact[] data) {
-        super(context, layoutResourceId, data);
+    public ContactAdapter(Context context, int layoutResourceId, ArrayList<Contact> data) {
+/*        super(context, layoutResourceId, data);*/
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
     }
-
-/*    public ContactAdapter(FragmentActivity activity, int layoutResourceId, int position,Contact[] data) {
-        super(activity, layoutResourceId, data);
-        this.layoutResourceId = layoutResourceId;
-        this.context = activity;
-        this.data = data;
-        this.contact=data[position];
-    }*/
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -52,23 +45,26 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             holder.imgIcon = (ImageView) row.findViewById(R.id.icon);
             holder.name = (TextView) row.findViewById(R.id.name);
             holder.status = (TextView) row.findViewById(R.id.status);
-            holder.delete=(Button)row.findViewById(R.id.deleteButton);
+            holder.delete = (Button) row.findViewById(R.id.deleteButton);
 
             row.setTag(holder);
         } else {
             holder = (ContactHolder) row.getTag();
         }
 
-        Contact contact = data[position];
+        Contact contact = data.get(position);
         holder.name.setText(contact.getName());
         holder.status.setText(contact.getStatus());
         holder.imgIcon.setImageResource(contact.getIcon());
+        holder.delete.setTag(position);
 
-        final View finalRow = row;
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                TabFragment2.getLv().removeView(finalRow);*/
+                /*Integer index = (Integer) v.getTag();*/
+                //items.remove(index.intValue());
+                data.remove((int) v.getTag());
+                notifyDataSetChanged();
             }
         });
 
@@ -81,5 +77,20 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         TextView status;
         Button delete;
 
+    }
+
+    @Override
+    public int getCount() {
+        return data.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return data.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }

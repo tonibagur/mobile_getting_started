@@ -33,9 +33,6 @@ public class DetailContact extends Fragment {
         TextView status=(TextView)v.findViewById(R.id.detail_status);
         status.setText(contact.getStatus());
         icon.setImageResource(contact.getIcon());
-
-        /*Toast.makeText(getActivity(), getString(R.id.status), Toast.LENGTH_SHORT).show();*/
-
         return v;
     }
 
