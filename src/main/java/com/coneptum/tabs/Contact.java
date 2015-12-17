@@ -7,7 +7,6 @@ package com.coneptum.tabs;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
