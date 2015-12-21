@@ -4,17 +4,11 @@ package com.coneptum.tabs;
  * Created by coneptum on 10/12/15.
  */
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import android.app.ListActivity;
-import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-public class Contact {
+
+import java.io.Serializable;
+
+public class Contact implements Serializable{
 
     private int icon;
     private String name;

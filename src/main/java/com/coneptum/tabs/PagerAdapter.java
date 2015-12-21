@@ -4,11 +4,13 @@ package com.coneptum.tabs;
  * Created by coneptum on 9/12/15.
  */
 
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+
+public class PagerAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
@@ -44,11 +46,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return R.id.dashboard;
             case 1:
-                return R.id.chats;
+                    return R.id.chats;
             case 2:
                 return R.id.account;
             default:
                 return -1;
         }
     }
+
+
 }
