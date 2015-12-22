@@ -45,15 +45,10 @@ public class TabFragment2 extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO insert this inside tab:
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
-                //Toast.makeText(getActivity(), contacts_data[position].getStatus(), Toast.LENGTH_SHORT).show();
-                //hauria de funcionar amb:
-                //pero de moment només funciona sense ajustarse a la tab amb:
-                trans.replace(android.R.id.content, new DetailContact(contacts.get(position)));
+                trans.replace(R.id.tab2, new DetailContact(contacts.get(position)), "detail");
                 trans.addToBackStack(null);
                 trans.commit();
-
             }
 
         });
@@ -61,5 +56,6 @@ public class TabFragment2 extends Fragment {
         return view;
 
     }
+
 
 }

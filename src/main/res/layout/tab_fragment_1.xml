@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/textview_top_box"
         android:paddingBottom="8dp"
         android:paddingLeft="15dp"
@@ -28,6 +27,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/textview_bottom_box"
+        android:elevation="3dp"
         android:padding="12dp"
         android:text="@string/update_comment1"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -57,6 +57,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/textview_bottom_box"
+        android:elevation="3dp"
         android:padding="12dp"
         android:text="@string/health_comment1"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -86,6 +87,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/textview_bottom_box"
+        android:elevation="3dp"
         android:padding="12dp"
         android:text="@string/upcoming_comment1"
         android:textAppearance="?android:attr/textAppearanceLarge"

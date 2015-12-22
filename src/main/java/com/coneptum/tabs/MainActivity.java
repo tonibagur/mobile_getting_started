@@ -2,16 +2,25 @@ package com.coneptum.tabs;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.internal.view.SupportActionModeWrapper;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolbar;
+
+    static Toolbar toolbar;
+
+    public static Toolbar getToolbar() {
+        return toolbar;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

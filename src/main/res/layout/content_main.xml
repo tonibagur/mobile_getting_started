@@ -10,19 +10,19 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimaryDark"
+        android:background="#f3f3f4"
         android:minHeight="?attr/actionBarSize"
-        style="@style/Base.TextAppearance.AppCompat.Display1"/>
+        />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_below="@+id/toolbar"
-        android:background="?attr/colorPrimary"
-        android:elevation="1dp"
+        android:background="#fff"
+        android:elevation="1.5dp"
         android:minHeight="?attr/actionBarSize" />
 
 
@@ -31,6 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tab_layout"
-        android:background="?attr/colorPrimary"/>
+        android:background="#fff" />
 
 </RelativeLayout>
