@@ -25,8 +25,6 @@ public class DetailContact extends Fragment {
     public DetailContact() {
     }
 
-    ;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Log.d("DEBUG", "onCreateView");ContactHolder holder = null;
@@ -57,6 +55,6 @@ public class DetailContact extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         MainActivity.getToolbar().setTitle(R.id.chats);
-    /*    MainActivity.getToolbar().getNavigationIcon().setVisible(false, true);*/
+        MainActivity.getToolbar().setNavigationIcon(null);
     }
 }
