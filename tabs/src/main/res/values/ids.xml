@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="dashboard" type="id">Dashboard</item>
+    <item name="chats" type="id">Chats</item>
+    <item name="account" type="id">Account</item>
+</resources>
