@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.coneptum.sidemenu.Option1" />
+        <activity android:name="com.example.coneptum.sidemenu.Option2" />
+        <activity android:name="com.example.coneptum.sidemenu.Option3" />
     </application>
 
 </manifest>

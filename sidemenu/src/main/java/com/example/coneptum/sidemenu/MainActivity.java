@@ -1,23 +1,28 @@
 package com.example.coneptum.sidemenu;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout drawer;
     private static Toolbar toolbar;
+    private DrawerLayout drawer;
+    private ListView drawerList;
+    private ActionBarDrawerToggle toggle;
+
+    public static Toolbar getToolbar() {
+        return toolbar;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,85 +31,70 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        String[] items = getResources().getStringArray(R.array.menu);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        drawerList = (ListView) findViewById(R.id.drawer_list);
+        /* Creating an ArrayAdapter to add items to mDrawerList */
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, items);
+        /* Setting the adapter to mDrawerList */
+        drawerList.setAdapter(adapter);
+        // Setting item click listener for the listview mDrawerList
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItem(position);
+                drawer.closeDrawer(GravityCompat.END);
+
+            }
+        });
+
+        ImageButton menu = (ImageButton) findViewById(R.id.menuButton);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else {
+                    drawer.openDrawer(GravityCompat.END);
+                }
+            }
+        });
+
+
+    }
+
+    public void selectItem(int position) {
+        Intent intent = null;
+        switch (position) {
+            case 0:
+                intent = new Intent(this, Option1.class);
+                break;
+            case 1:
+                intent = new Intent(this, Option2.class);
+                break;
+            case 2:
+                intent = new Intent(this, Option3.class);
+                break;
+            default:
+                break;
+        }
+
+        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
-    }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-        return true;
-    }*/
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        /*Fragment fragment = null;
-        if (id == R.id.op1) {
-            fragment = new Option1();
-        } else if (id == R.id.op2) {
-            //fragment = new LlistaCompra();
-        } else if (id == R.id.op3) {
-            //fragment = new VeurePlats();
-        } else if (id == R.id.op4) {
-            //fragment = new AfegirPlats();
-        }
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment, "NewFragmentTag");
-        ft.commit();*/
-
-        if (id == R.id.op1) {
-            try {
-                startActivity(new Intent(this, Option1.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-            } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
-    public static Toolbar getToolbar() {
-        return toolbar;
     }
 
 }
