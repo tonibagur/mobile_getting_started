@@ -1,0 +1,7 @@
+build
+libs
+sidemenu.iml
+proguard-rules.pro
+src/androidTest
+src/test
+.gitignore~
