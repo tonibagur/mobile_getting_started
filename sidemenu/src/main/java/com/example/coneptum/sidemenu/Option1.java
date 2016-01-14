@@ -1,21 +1,21 @@
 package com.example.coneptum.sidemenu;
 
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 
 /**
  * Created by coneptum on 11/01/16.
  */
-public class Option1 extends Activity {
+public class Option1 extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.option1);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.option1, container, false);
+        return v;
     }
-
 }
