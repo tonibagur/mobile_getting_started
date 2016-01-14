@@ -3,10 +3,10 @@ package com.example.coneptum.sidemenu;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
-                drawer.closeDrawer(GravityCompat.END);
+                drawer.closeDrawer(Gravity.RIGHT);
 
             }
         });
@@ -57,12 +57,37 @@ public class MainActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
+                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                    ((ImageButton) v).setImageResource(R.drawable.ic_drawer);
                 } else {
-                    drawer.openDrawer(GravityCompat.END);
+                    drawer.openDrawer(Gravity.RIGHT);
+                    ((ImageButton) v).setImageResource(R.drawable.ic_back_drawer);
                 }
+            }
+        });
+        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
+
+            ImageButton menu = (ImageButton) findViewById(R.id.menuButton);
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                menu.setImageResource(R.drawable.ic_back_drawer);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                menu.setImageResource(R.drawable.ic_drawer);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
             }
         });
 
@@ -94,19 +119,23 @@ public class MainActivity extends AppCompatActivity {
 
         switch (position) {
             case 0:
+                fragment = new Home();
+                mainShown=true;
+                break;
+            case 1:
                 fragment = new Option1();
                 mainShown = false;
                 break;
-            case 1:
+            case 2:
                 fragment = new Option2();
                 mainShown = false;
                 break;
-            case 2:
+            case 3:
                 fragment = new Option3();
                 mainShown = false;
                 break;
             default:
-                fragment = new Home();
+
                 break;
         }
 
@@ -119,14 +148,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.END)) {
-            drawer.closeDrawer(GravityCompat.END);
+        if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+            drawer.closeDrawer(Gravity.RIGHT);
         } else {
             if (!mainShown) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.content, new Home(), "NewFragmentTag").addToBackStack(null);
                 ft.commit();
-                mainShown=true;
+                mainShown = true;
             } else {
                 super.onBackPressed();
             }

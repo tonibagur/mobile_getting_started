@@ -5,7 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string-array name="menu">
-        <item>Option 1</item>
+        <item>Home</item>
+        <item>Accelerometer</item>
         <item>Option 2</item>
         <item>Option 3</item>
     </string-array>
