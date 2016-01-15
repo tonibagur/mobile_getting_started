@@ -2,6 +2,7 @@ package com.example.coneptum.sidemenu;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,16 +34,17 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String[] items = getResources().getStringArray(R.array.menu);
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         drawerList = (ListView) findViewById(R.id.drawer_list);
+
         /* Creating an ArrayAdapter to add items to mDrawerList */
+        String[] items = getResources().getStringArray(R.array.menu);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, items);
+
         /* Setting the adapter to mDrawerList */
         drawerList.setAdapter(adapter);
+
         // Setting item click listener for the listview mDrawerList
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
 
             ImageButton menu = (ImageButton) findViewById(R.id.menuButton);
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, Option2.class);
                 break;
             case 2:
-                intent = new Intent(this, Option3.class);
+                intent = new Intent(this, Accelerometer.class);
                 break;
             default:
                 break;
@@ -120,28 +124,41 @@ public class MainActivity extends AppCompatActivity {
         switch (position) {
             case 0:
                 fragment = new Home();
-                mainShown=true;
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.content, fragment, "NewFragmentTag").addToBackStack(null);
+                ft.commit();
+                mainShown = true;
                 break;
             case 1:
                 fragment = new Option1();
+                ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.content, fragment, "NewFragmentTag").addToBackStack(null);
+                ft.commit();
                 mainShown = false;
                 break;
             case 2:
-                fragment = new Option2();
+                Intent intent = new Intent(this, Accelerometer.class);
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 mainShown = false;
                 break;
             case 3:
-                fragment = new Option3();
-                mainShown = false;
+                try {
+                    intent = new Intent(this, AccelerometerColor.class);
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                    mainShown = false;
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 break;
             default:
-
+                fragment = new Home();
+                ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.content, fragment, "NewFragmentTag").addToBackStack(null);
+                ft.commit();
+                mainShown = true;
                 break;
         }
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.content, fragment, "NewFragmentTag").addToBackStack(null);
-        ft.commit();
 
     }
 

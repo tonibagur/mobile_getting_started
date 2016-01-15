@@ -19,7 +19,6 @@ public class Option1 extends Fragment {
         View v = inflater.inflate(R.layout.option1, container, false);
 
         TextView op = (TextView) v.findViewById(R.id.op);
-        op.setText("Accelerometer");
         return v;
     }
 }

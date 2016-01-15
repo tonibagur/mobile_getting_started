@@ -6,9 +6,9 @@
 
     <string-array name="menu">
         <item>Home</item>
+        <item>Option 1</item>
         <item>Accelerometer</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
+        <item>Change color</item>
     </string-array>
 
 </resources>

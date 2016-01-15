@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:id="@+id/drawer"
-            android:layout_width="220dp"
+            android:layout_width="@dimen/sidemenu"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:orientation="vertical"
@@ -31,7 +31,7 @@
             <ImageView
                 android:id="@+id/drawer_image"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="@dimen/menu_photo"
                 android:src="@drawable/side_nav_bar" />
 
             <ListView

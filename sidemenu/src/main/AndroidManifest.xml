@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Accelerometer"></activity>
+        <activity android:name=".AccelerometerColor"></activity>
     </application>
 
 </manifest>
