@@ -27,9 +27,12 @@ public class DetailContact extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Log.d("DEBUG", "onCreateView");ContactHolder holder = null;
+        //Log.d("DEBUG", "onCreateView");
+
+        //view
         View v = inflater.inflate(R.layout.detail_contact, container, false);
 
+        //set back icon in toolbar
         Toolbar tl=MainActivity.getToolbar();
         tl.setTitle(contact.getName());
         tl.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -40,6 +43,7 @@ public class DetailContact extends Fragment {
             }
         });
 
+        //find views and put data on it
         ImageView icon = (ImageView) v.findViewById(R.id.detail_icon);
         TextView status = (TextView) v.findViewById(R.id.detail_status);
         TextView name = (TextView) v.findViewById(R.id.detail_name);
@@ -51,6 +55,7 @@ public class DetailContact extends Fragment {
         return v;
     }
 
+    //when activity is destroyed delete back button and change toolbar name
     @Override
     public void onDestroyView() {
         super.onDestroyView();

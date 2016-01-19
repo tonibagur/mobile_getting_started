@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,17 +26,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //create tab distributor
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.tab_image_status));
         tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.tab_image_chats));
         tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.tab_image_account));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        //create containers for fragments in order to work like tabs
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
@@ -58,5 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //parser test
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
     }
 }

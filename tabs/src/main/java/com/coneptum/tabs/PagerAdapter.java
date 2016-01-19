@@ -11,13 +11,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 
 public class PagerAdapter extends FragmentPagerAdapter {
+
+    //variable
     int mNumOfTabs;
 
+    //contructor
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
 
+    //returns fragment asked
     @Override
     public Fragment getItem(int position) {
 
@@ -36,11 +40,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
+    //gets number of tabs
     @Override
     public int getCount() {
         return mNumOfTabs;
     }
 
+    //returns title tab
     public int getTitle(int position) {
         switch (position) {
             case 0:

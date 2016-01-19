@@ -21,6 +21,7 @@ public class ContactAdapter extends BaseAdapter {
     int layoutResourceId;
     ArrayList<Contact> data;
 
+
     public ContactAdapter(Context context, int layoutResourceId, ArrayList<Contact> data) {
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -29,9 +30,13 @@ public class ContactAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        //view for each row
         View row = convertView;
+
         ContactHolder holder = null;
 
+        //set the row if it's not created or get it if it is.
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -47,12 +52,14 @@ public class ContactAdapter extends BaseAdapter {
             holder = (ContactHolder) row.getTag();
         }
 
+        //put data in the fields
         Contact contact = data.get(position);
         holder.name.setText(contact.getName());
         holder.status.setText(contact.getStatus());
         holder.imgIcon.setImageResource(contact.getIcon());
         holder.delete.setTag(position);
 
+        //deletes row
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +71,7 @@ public class ContactAdapter extends BaseAdapter {
         return row;
     }
 
+    //holder
     static class ContactHolder {
         ImageView imgIcon;
         TextView name;
